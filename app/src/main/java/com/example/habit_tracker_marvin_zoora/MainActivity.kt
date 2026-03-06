@@ -104,15 +104,13 @@ fun HabitInputSection(
 fun HabitList(
     habits: MutableList<Habit>
 ) {
-
     LazyColumn {
-
         itemsIndexed(habits) { index, habit ->
-
             HabitItem(
                 habit = habit,
                 onCompletedClick = {
-                    habit.completed = !habit.completed
+                    val oldHabit = habits[index]
+                    habits[index] = Habit(oldHabit.name, !oldHabit.completed)
                 }
             )
 
