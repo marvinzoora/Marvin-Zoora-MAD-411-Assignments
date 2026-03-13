@@ -111,6 +111,7 @@ fun HabitInputSection(
     onTextChange: (String) -> Unit,
     onAddClick: () -> Unit
 ) {
+
     Column {
 
         Text("Enter a new habit")
