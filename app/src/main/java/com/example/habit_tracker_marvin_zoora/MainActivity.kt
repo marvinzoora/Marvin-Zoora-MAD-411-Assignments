@@ -24,12 +24,13 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //main ui
         setContent {
             HabitTrackerApp()
         }
     }
 }
+
 
 @Composable
 fun HabitTrackerApp() {
@@ -76,7 +77,9 @@ fun HabitTrackerApp() {
 @Composable
 fun HabitInputSection(
     habitText: String,
+    //update habitText when user enters new habit
     onTextChange: (String) -> Unit,
+    //
     onAddClick: () -> Unit
 ) {
 
@@ -86,6 +89,7 @@ fun HabitInputSection(
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        //text field for habit
         OutlinedTextField(
             value = habitText,
             onValueChange = onTextChange,
@@ -104,8 +108,10 @@ fun HabitInputSection(
 fun HabitList(
     habits: MutableList<Habit>
 ) {
+    //lazy column to display list
     LazyColumn {
         itemsIndexed(habits) { index, habit ->
+            //display habits
             HabitItem(
                 habit = habit,
                 onCompletedClick = {
@@ -125,11 +131,14 @@ fun HabitItem(
     onCompletedClick: () -> Unit
 ) {
 
+    //row layout for habits and button
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
+        //display habit
+        //line to show completed
         Text(
             text = habit.name,
             color = if (habit.completed) Color.Gray else Color.Black,
@@ -138,7 +147,7 @@ fun HabitItem(
             else
                 TextDecoration.None
         )
-
+        //mark habit completed
         Button(onClick = onCompletedClick) {
             Text("Completed")
         }
