@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.util.Log
 
 //i use a data class for a habit and boolean whether it's completed
 data class Habit(
@@ -31,11 +32,38 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("Lifecycle", "onCreate called")
         //main ui
         setContent {
             HabitTrackerApp()
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("Lifecycle", "onStart called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Lifecycle", "onResume called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("Lifecycle", "onStop called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("Lifecycle", "onStop calledf")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("Lifecycle", "onDestroy called")
+    }
+
 }
 
 @Composable
